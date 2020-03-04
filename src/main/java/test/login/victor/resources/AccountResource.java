@@ -25,6 +25,7 @@ public class AccountResource {
 	@Autowired
 	AccountService service;
 	
+	//recurso que chama todos as contas
 	//isso server para autorizar alguns tipos de contas em end-points especificos
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping
