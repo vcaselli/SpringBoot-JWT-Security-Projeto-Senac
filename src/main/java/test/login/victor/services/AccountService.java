@@ -41,6 +41,20 @@ public class AccountService {
 	}
 	
 	
+	public Account findByEmail(String email) {
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+	
+		Account obj = ar.findByEmail(email);
+		if (obj == null) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Account.class.getName());
+		}
+		return obj;
+	}
+	
 	public Account insert(Account obj) { 
 		return ar.save(obj);
 	}
