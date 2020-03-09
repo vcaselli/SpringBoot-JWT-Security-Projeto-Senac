@@ -1,9 +1,23 @@
 package test.login.victor.entities;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import test.login.victor.entities.enums.Perfil;
 
 @Entity
 public class Membros implements java.io.Serializable{
@@ -14,11 +28,22 @@ public class Membros implements java.io.Serializable{
 	private Long id; 
 	private String nome; 
 	private Integer pin; 
-
+	@JsonIgnore
+	@ManyToOne
+    @JoinColumn(name = "idAccount")
+	private Account account;
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS_MEMBRO")
+	private Set<Integer> perfis = new HashSet<>();
+	private String nascimento;
+	private String sexo; 
+	private String parentesco; 
+	private Double pontuacao; 
 	
 	
 	public Membros() { 
-	this.pin = 0000; 
+	this.pin = 1234; 
+	this.pontuacao =  0.0;
 
 	}
 
@@ -50,6 +75,78 @@ public class Membros implements java.io.Serializable{
 
 	public void setPin(Integer pin) {
 		this.pin = pin;
+	}
+	
+	
+	
+			
+			
+
+
+	public Account getAccount() {
+		return account;
+	}
+
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+		
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
+	}
+	
+	
+	
+	
+	
+	public String getNascimento() {
+		return nascimento;
+	}
+
+
+	public void setNascimento(String nascimento) {
+		this.nascimento = nascimento;
+	}
+
+
+	public String getSexo() {
+		return sexo;
+	}
+
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+
+	public String getParentesco() {
+		return parentesco;
+	}
+
+
+	public void setParentesco(String parentesco) {
+		this.parentesco = parentesco;
+	}
+
+
+	public Double getPontuacao() {
+		return pontuacao;
+	}
+
+
+	public void setPontuacao(Double pontuacao) {
+		this.pontuacao = pontuacao;
+	}
+
+
+	public void setPerfis(Set<Integer> perfis) {
+		this.perfis = perfis;
 	}
 
 

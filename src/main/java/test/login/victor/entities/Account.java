@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -33,7 +34,9 @@ public class Account implements Serializable {
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
-
+	
+	@OneToMany(mappedBy = "account")
+	private List<Membros> membros = new ArrayList<>();
 	
 	
 	
@@ -90,6 +93,19 @@ public class Account implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	
+	
+	
+
+	public List<Membros> getMembros() {
+		return membros;
+	}
+
+
+	public void setMembros(List<Membros> membros) {
+		this.membros = membros;
 	}
 
 
