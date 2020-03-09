@@ -1,7 +1,9 @@
 package test.login.victor.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -39,13 +42,20 @@ public class Membros implements java.io.Serializable{
 	private String sexo; 
 	private String parentesco; 
 	private Double pontuacao; 
+	@OneToMany(mappedBy = "membros")
+	private List<Tarefas> tarefas = new ArrayList<>();
 	
 	
 	public Membros() { 
 	this.pin = 1234; 
 	this.pontuacao =  0.0;
+	addPerfil(Perfil.MEMBRO);
 
 	}
+	
+	
+	
+	
 
 
 	public Long getId() {
@@ -148,6 +158,28 @@ public class Membros implements java.io.Serializable{
 	public void setPerfis(Set<Integer> perfis) {
 		this.perfis = perfis;
 	}
+
+	
+	
+	
+	
+
+	public List<Tarefas> getTarefas() {
+		return tarefas;
+	}
+
+
+
+
+
+
+	public void setTarefas(List<Tarefas> tarefas) {
+		this.tarefas = tarefas;
+	}
+
+
+
+
 
 
 	@Override

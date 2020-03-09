@@ -9,9 +9,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import test.login.victor.entities.Account;
 import test.login.victor.entities.Membros;
+import test.login.victor.entities.Tarefas;
 import test.login.victor.entities.enums.Perfil;
 import test.login.victor.repositories.AccountRepository;
 import test.login.victor.repositories.MembrosRepository;
+import test.login.victor.repositories.TarefasRepository;
 
 @Configuration
 public class TestConfig implements CommandLineRunner {
@@ -25,8 +27,16 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private MembrosRepository mp;
 	
+	@Autowired
+	private TarefasRepository tr;
+	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		Tarefas t = new Tarefas(); 
+		t.setNome("Lavar louça");
+		
+		
 		Membros m2 = new Membros();
 		m2.setNome("Onélia");
 		m2.setParentesco("Mãe");
@@ -45,10 +55,12 @@ public class TestConfig implements CommandLineRunner {
 		a2.getMembros().add(m2);
 		m.setAccount(a);
 		m2.setAccount(a2);
-		
+		m.getTarefas().add(t);
+		t.setMembros(m);
 		
 		ar.saveAll(Arrays.asList(a,a2));
 		mp.saveAll(Arrays.asList(m,m2));
+		tr.save(t);
 	}
 
 }
