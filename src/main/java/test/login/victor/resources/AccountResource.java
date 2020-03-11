@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,6 +55,13 @@ public class AccountResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(account.getId()).toUri();
 		return ResponseEntity.created(uri).body(account);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Account> update(@PathVariable Integer id, @RequestBody Account obj){ 
+		obj = service.update(id, obj);
+		return ResponseEntity.ok().body(obj);
+		
 	}
 	
 	

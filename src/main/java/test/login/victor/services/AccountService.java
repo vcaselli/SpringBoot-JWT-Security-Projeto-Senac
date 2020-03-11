@@ -65,5 +65,19 @@ public class AccountService {
 		return ac;
 	}
 	
+	
+	public void updateData(Account obj, Account entity) { 
+		entity.setNome(obj.getNome());
+		entity.setEmail(obj.getEmail());
+		entity.setMembros(obj.getMembros());
+		
+	}
+	
+	public Account update(Integer id, Account obj) { 
+		Account entity = ar.getOne(id);
+		updateData(entity, obj);
+		return ar.save(entity);
+	}
+	
 
 }

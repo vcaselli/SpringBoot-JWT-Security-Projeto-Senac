@@ -47,20 +47,24 @@ public class TestConfig implements CommandLineRunner {
 		m.setNascimento("25/01/1995");
 		m.setSexo("Masculino");
 		m.setPontuacao(50.0);
+		Membros m3 = new Membros(); 
+		m3.setNome("Matheus");
 		Account a = new Account(null, "victor", "victor@gmail.com", pe.encode("victor"));
 		Account a2 = new Account(null, "Marcos", "victordcporto@gmail.com", pe.encode("112"));
 		a2.addPerfil(Perfil.ADMIN);
 
 		a.getMembros().add(m);
-		a2.getMembros().add(m2);
+		a2.getMembros().addAll(Arrays.asList(m2,m3));
 		m.setAccount(a);
 		m2.setAccount(a2);
 		m.getTarefas().add(t);
+		m3.setAccount(a2);
 		t.setMembros(m);
 		
 		ar.saveAll(Arrays.asList(a,a2));
-		mp.saveAll(Arrays.asList(m,m2));
+		mp.saveAll(Arrays.asList(m,m2,m3 ));
 		tr.save(t);
 	}
 
 }
+                  
