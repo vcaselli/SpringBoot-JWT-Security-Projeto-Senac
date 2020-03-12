@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import test.login.victor.entities.Account;
 import test.login.victor.entities.Membros;
 import test.login.victor.repositories.MembrosRepository;
 
@@ -33,6 +34,27 @@ public class MembrosService {
 	
 	public void delete(Long id) { 
 		repo.deleteById(id);
+	}
+	
+	
+	
+	public Membros update(Long id, Membros obj) { 
+		Membros entity = repo.getOne(id);
+		//System.out.println(entity.getNome());
+		//System.out.println(obj.getNome());
+		updateData(entity, obj);
+		return repo.save(entity);
+	}
+	
+	public void updateData(Membros entity, Membros obj) { 
+		System.out.println("Entidade: "+ entity.getNome());
+		System.out.println("Obj: "+ obj.getNome());
+		entity.setNome(obj.getNome());
+		entity.setNascimento(obj.getNascimento());
+		entity.setPin(obj.getPin());
+		entity.setSexo(obj.getSexo());
+		entity.setAccount(obj.getAccount());
+		
 	}
 	
 }

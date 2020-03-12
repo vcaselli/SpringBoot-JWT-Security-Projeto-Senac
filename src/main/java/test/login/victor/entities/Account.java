@@ -34,7 +34,6 @@ public class Account implements Serializable {
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
-	
 	@OneToMany(mappedBy = "account")
 	private List<Membros> membros = new ArrayList<>();
 	

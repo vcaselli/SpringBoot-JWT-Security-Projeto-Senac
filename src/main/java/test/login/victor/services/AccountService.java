@@ -66,7 +66,7 @@ public class AccountService {
 	}
 	
 	
-	public void updateData(Account obj, Account entity) { 
+	public void updateData(Account entity, Account obj) { 
 		entity.setNome(obj.getNome());
 		entity.setEmail(obj.getEmail());
 		entity.setMembros(obj.getMembros());
