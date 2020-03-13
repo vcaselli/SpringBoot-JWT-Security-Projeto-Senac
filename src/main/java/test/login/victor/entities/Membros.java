@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import test.login.victor.entities.enums.Perfil;
@@ -43,6 +44,7 @@ public class Membros implements java.io.Serializable{
 	private String parentesco; 
 	private Double pontuacao; 
 	@OneToMany(mappedBy = "membros")
+	@JsonBackReference
 	private List<Tarefas> tarefas = new ArrayList<>();
 	
 	

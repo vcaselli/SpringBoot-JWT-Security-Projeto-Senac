@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -38,9 +39,9 @@ public class MembrosResources {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@PostMapping
-	public ResponseEntity<Membros> insert(@RequestBody Membros m){ 
-		Membros membros = service.insert(m);
+	@PostMapping("/account/{id}")
+	public ResponseEntity<Membros> insert(@PathVariable Integer id, @RequestBody Membros m, String email){ 
+		Membros membros = service.insert(m, id);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(membros.getId()).toUri();
 		return ResponseEntity.created(uri).body(membros);

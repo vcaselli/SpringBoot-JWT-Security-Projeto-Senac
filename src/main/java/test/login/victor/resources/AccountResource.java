@@ -18,7 +18,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import test.login.victor.dto.AccountNewDTO;
 import test.login.victor.entities.Account;
+import test.login.victor.entities.Membros;
 import test.login.victor.services.AccountService;
+import test.login.victor.services.MembrosService;
 
 @RestController
 @RequestMapping("/account")
@@ -26,6 +28,8 @@ public class AccountResource {
 	
 	@Autowired
 	AccountService service;
+	@Autowired
+	MembrosService mservice;
 	
 	//recurso que chama todos as contas
 	//isso server para autorizar alguns tipos de contas em end-points especificos
@@ -63,6 +67,8 @@ public class AccountResource {
 		return ResponseEntity.ok().body(obj);
 		
 	}
+	
+	
 	
 	
 

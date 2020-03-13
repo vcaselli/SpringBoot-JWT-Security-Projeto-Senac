@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import test.login.victor.entities.Account;
 import test.login.victor.entities.Membros;
+import test.login.victor.repositories.AccountRepository;
 import test.login.victor.repositories.MembrosRepository;
 
 @Service
@@ -15,6 +16,8 @@ public class MembrosService {
 	
 	@Autowired
 	MembrosRepository repo; 
+	@Autowired
+	AccountRepository acRep;
 
 	
 	public List<Membros> findAll(){ 
@@ -28,7 +31,9 @@ public class MembrosService {
 	}
 	
 	
-	public Membros insert(Membros obj) { 
+	public Membros insert(Membros obj, Integer id) { 
+		Optional<Account> ac = acRep.findById(id);
+		obj.setAccount(ac.get());
 		return repo.save(obj);
 	}
 	

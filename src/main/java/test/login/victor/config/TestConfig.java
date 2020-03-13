@@ -52,6 +52,8 @@ public class TestConfig implements CommandLineRunner {
 		Account a = new Account(null, "victor", "victor@gmail.com", pe.encode("victor"));
 		Account a2 = new Account(null, "Marcos", "victordcporto@gmail.com", pe.encode("112"));
 		a2.addPerfil(Perfil.ADMIN);
+		
+		Account nicole = new Account(null, "nicole", "nicole@gmail.com", pe.encode("123"));
 
 		a.getMembros().add(m);
 		a2.getMembros().addAll(Arrays.asList(m2,m3));
@@ -61,7 +63,7 @@ public class TestConfig implements CommandLineRunner {
 		m3.setAccount(a2);
 		t.setMembros(m);
 		
-		ar.saveAll(Arrays.asList(a,a2));
+		ar.saveAll(Arrays.asList(a,a2,nicole));
 		mp.saveAll(Arrays.asList(m,m2,m3 ));
 		tr.save(t);
 	}

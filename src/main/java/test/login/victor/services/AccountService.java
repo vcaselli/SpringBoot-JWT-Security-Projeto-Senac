@@ -1,5 +1,6 @@
 package test.login.victor.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import test.login.victor.dto.AccountNewDTO;
 import test.login.victor.entities.Account;
+import test.login.victor.entities.Membros;
 import test.login.victor.entities.enums.Perfil;
 import test.login.victor.repositories.AccountRepository;
 import test.login.victor.resources.exceptions.AuthorizationException;
@@ -77,6 +79,13 @@ public class AccountService {
 		Account entity = ar.getOne(id);
 		updateData(entity, obj);
 		return ar.save(entity);
+	}
+	
+	public Account addMembro(Integer id, Membros obj) { 
+		Account entity = ar.getOne(id); 
+		entity.getMembros().addAll(Arrays.asList(obj));
+		return ar.save(entity);
+		
 	}
 	
 
