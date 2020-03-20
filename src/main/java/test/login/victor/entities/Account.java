@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -18,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import test.login.victor.entities.enums.Perfil;
 
@@ -36,8 +34,7 @@ public class Account implements Serializable {
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	@JsonManagedReference
+	@OneToMany(mappedBy = "account")
 	private List<Membros> membros = new ArrayList<>();
 	
 	
