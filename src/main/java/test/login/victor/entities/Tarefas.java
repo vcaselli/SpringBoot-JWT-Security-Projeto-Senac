@@ -30,7 +30,9 @@ public class Tarefas implements java.io.Serializable {
     @JoinColumn(name = "idMembros")
 	private Membros membros;
 	private Boolean status; 
-	
+	@ManyToOne
+    @JoinColumn(name = "idDesignado")
+	private Membros designar;
 	
 	public Tarefas() { 
 		this.status = false;
@@ -99,6 +101,19 @@ public class Tarefas implements java.io.Serializable {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+
+	
+	
+	
+	public Membros getDesignar() {
+		return designar;
+	}
+
+
+	public void setDesignar(Membros designar) {
+		this.designar = designar;
 	}
 
 

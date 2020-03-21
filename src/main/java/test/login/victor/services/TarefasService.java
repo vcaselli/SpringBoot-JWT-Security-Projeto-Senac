@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import test.login.victor.entities.Membros;
 import test.login.victor.entities.Tarefas;
+import test.login.victor.repositories.MembrosRepository;
 import test.login.victor.repositories.TarefasRepository;
 
 @Service
@@ -14,7 +16,8 @@ public class TarefasService {
 	
 	@Autowired
 	TarefasRepository repo; 
-	
+	@Autowired
+	MembrosRepository mRepo; 
 	
 	
 	public List<Tarefas> findAll(){ 
@@ -27,7 +30,12 @@ public class TarefasService {
 	}
 	
 	
-	
+	public Tarefas  insert(Tarefas obj, Long id) { 
+		Optional<Membros> m = mRepo.findById(id);
+		obj.setMembros(m.get());
+		return repo.save(obj);
+		
+	}
 	
 	
 

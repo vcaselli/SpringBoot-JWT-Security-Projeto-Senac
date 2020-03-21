@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -43,8 +44,7 @@ public class Membros implements java.io.Serializable{
 	private String sexo; 
 	private String parentesco; 
 	private Double pontuacao; 
-	@OneToMany(mappedBy = "membros")
-	@JsonBackReference
+	@OneToMany(mappedBy = "membros", cascade = CascadeType.ALL)
 	private List<Tarefas> tarefas = new ArrayList<>();
 	
 	

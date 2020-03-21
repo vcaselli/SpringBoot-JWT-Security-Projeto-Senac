@@ -1,13 +1,17 @@
 package test.login.victor.resources;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import test.login.victor.entities.Tarefas;
 import test.login.victor.services.TarefasService;
@@ -35,8 +39,13 @@ public class TarefasResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	
-	
+	@PostMapping("/membros/{id}")
+	public ResponseEntity<Tarefas> insert(@RequestBody Tarefas obj, @PathVariable Long id){ 
+		Tarefas t = service.insert(obj, id);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(t.getId()).toUri();
+		return ResponseEntity.created(uri).body(t);
+	}
 	
 	
 	
