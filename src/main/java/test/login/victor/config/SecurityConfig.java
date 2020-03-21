@@ -68,14 +68,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//garante a não criação de sessões
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
-	  @Bean
-	  CorsConfigurationSource corsConfigurationSource() {
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
 		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
-	    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	    source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-	    return source;
-	  }
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
 	  
 	 @Override
 		public void configure(AuthenticationManagerBuilder auth) throws Exception {
