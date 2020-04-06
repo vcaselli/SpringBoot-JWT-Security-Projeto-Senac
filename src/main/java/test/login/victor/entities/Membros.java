@@ -1,14 +1,9 @@
 package test.login.victor.entities;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,10 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import test.login.victor.entities.enums.Perfil;
+import test.login.victor.entities.enums.TipoMembro;
 
 @Entity
 public class Membros implements java.io.Serializable{
@@ -37,21 +32,17 @@ public class Membros implements java.io.Serializable{
 	@ManyToOne
     @JoinColumn(name = "idAccount")
 	private Account account;
-	@ElementCollection(fetch=FetchType.EAGER)
-	@CollectionTable(name="PERFIS_MEMBRO")
-	private Set<Integer> perfis = new HashSet<>();
 	private String nascimento;
 	private String sexo; 
 	private String parentesco; 
 	private Double pontuacao; 
 	@OneToMany(mappedBy = "membros", cascade = CascadeType.ALL)
 	private List<Tarefas> tarefas = new ArrayList<>();
-	
+	private Integer tipo;
 	
 	public Membros() { 
 	this.pin = 1234; 
 	this.pontuacao =  0.0;
-	addPerfil(Perfil.MEMBRO);
 
 	}
 	
@@ -91,7 +82,13 @@ public class Membros implements java.io.Serializable{
 	
 	
 	
-			
+	public TipoMembro getTipo() {
+		return TipoMembro.toEnum(tipo);
+	}
+
+	public void setTipo(TipoMembro tipo) {
+		this.tipo = tipo.getCod();
+	}
 			
 
 
@@ -102,15 +99,6 @@ public class Membros implements java.io.Serializable{
 
 	public void setAccount(Account account) {
 		this.account = account;
-	}
-
-	public Set<Perfil> getPerfis() {
-		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
-		
-	}
-	
-	public void addPerfil(Perfil perfil) {
-		perfis.add(perfil.getCod());
 	}
 	
 	
@@ -157,9 +145,6 @@ public class Membros implements java.io.Serializable{
 	}
 
 
-	public void setPerfis(Set<Integer> perfis) {
-		this.perfis = perfis;
-	}
 
 	
 	

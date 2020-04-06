@@ -1,17 +1,14 @@
 package test.login.victor.entities.enums;
 
+public enum TipoMembro {
 
-public enum Perfil {
-	
-	ADMIN(1, "ROLE_ADMIN"),
-	CLIENTE(2, "ROLE_CLIENTE"),
-	MEMBRO(3, "ROLE_MEMBRO"),
-	RESPONSAVEL(4, "ROLE_RESPONSAVEL");
+	RESPONSAVEL(1, "Responsavel"),
+	COMUM(2, "Comum");
 	
 	private int cod;
 	private String descricao;
 	
-	private Perfil(int cod, String descricao) {
+	private TipoMembro(int cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
 	}
@@ -24,13 +21,13 @@ public enum Perfil {
 		return descricao;
 	}
 	
-	public static Perfil toEnum(Integer cod) {
+	public static TipoMembro toEnum(Integer cod) {
 		
 		if (cod == null) {
 			return null;
 		}
 		
-		for (Perfil x : Perfil.values()) {
+		for (TipoMembro x : TipoMembro.values()) {
 			if (cod.equals(x.getCod())) {
 				return x;
 			}
@@ -38,5 +35,5 @@ public enum Perfil {
 		
 		throw new IllegalArgumentException("Id inválido: " + cod);
 	}
-
+	
 }
