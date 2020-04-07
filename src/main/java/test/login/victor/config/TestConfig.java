@@ -34,15 +34,14 @@ public class TestConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 
-		Account a = new Account(null, "victor", "victor@gmail.com", pe.encode("victor"));
-		Account a2 = new Account(null, "Marcos", "victordcporto@gmail.com", pe.encode("112"));
+		Account a2 = new Account(null, "Victor", "victordcporto@gmail.com", pe.encode("123"));
 		a2.addPerfil(Perfil.ADMIN);
 		
 		Account nicole = new Account(null, "nicole", "nicole@gmail.com", pe.encode("123"));
 
 	
 		
-		ar.saveAll(Arrays.asList(a,a2,nicole));
+		ar.saveAll(Arrays.asList(a2,nicole));
 	
 	}
 

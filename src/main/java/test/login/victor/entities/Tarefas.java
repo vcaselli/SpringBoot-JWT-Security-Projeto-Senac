@@ -30,8 +30,6 @@ public class Tarefas implements java.io.Serializable {
     @JoinColumn(name = "idMembros")
 	private Membros membros;
 	private Boolean status; 
-	@ManyToOne
-    @JoinColumn(name = "idDesignado")
 	private String designar;
 	
 	public Tarefas() { 
