@@ -36,6 +36,8 @@ public class Membros implements java.io.Serializable{
 	private String sexo; 
 	private String parentesco; 
 	private Double pontuacao; 
+	@OneToMany(mappedBy = "membros", cascade = CascadeType.ALL)
+	private List<Tarefas> tarefas = new ArrayList<>();
 	private Integer tipo;
 	
 	public Membros() { 
@@ -148,6 +150,20 @@ public class Membros implements java.io.Serializable{
 	
 	
 	
+
+	public List<Tarefas> getTarefas() {
+		return tarefas;
+	}
+
+
+
+
+
+
+	public void setTarefas(List<Tarefas> tarefas) {
+		this.tarefas = tarefas;
+	}
+
 
 
 
