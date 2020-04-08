@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import test.login.victor.entities.Membros;
+import test.login.victor.entities.Tarefas;
 import test.login.victor.services.MembrosService;
 
 @RestController
@@ -57,6 +57,12 @@ public class MembrosResources {
 	public ResponseEntity<Membros> update(@PathVariable Long id, @RequestBody Membros obj){ 
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@PutMapping("points/{id}")
+	public ResponseEntity<Membros> updatePoints(@PathVariable Long id, @RequestBody Tarefas obj){ 
+		Membros entity = service.updatePoints(id, obj);
+		return ResponseEntity.ok().body(entity);
 	}
 
 }

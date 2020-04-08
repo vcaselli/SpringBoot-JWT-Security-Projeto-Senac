@@ -31,6 +31,8 @@ public class Tarefas implements java.io.Serializable {
 	private Membros membros;
 	private Boolean status; 
 	private String designar;
+	private String dataInicial;
+	private String dataFinal;
 	
 	public Tarefas() { 
 		this.status = false;
@@ -112,6 +114,29 @@ public class Tarefas implements java.io.Serializable {
 
 	public void setDesignar(String designar) {
 		this.designar = designar;
+	}
+	
+	
+	
+
+
+	public String getDataInicial() {
+		return dataInicial;
+	}
+
+
+	public void setDataInicial(String dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+
+	public String getDataFinal() {
+		return dataFinal;
+	}
+
+
+	public void setDataFinal(String dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 

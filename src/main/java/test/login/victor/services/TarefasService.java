@@ -37,6 +37,25 @@ public class TarefasService {
 		
 	}
 	
+	public void delete(Long id) { 
+		repo.deleteById(id);
+	}
+	
+	
+	public Tarefas update(Long id, Tarefas obj) { 
+		Tarefas entity = repo.getOne(id);
+		updateData(entity, obj);
+		return repo.save(entity);
+		
+	}
+	
+	
+	public void updateData(Tarefas entity, Tarefas obj) { 
+		entity.setStatus(obj.getStatus());
+		entity.setDataFinal(obj.getDataFinal());
+		
+	}
+	
 	
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import test.login.victor.entities.Account;
 import test.login.victor.entities.Membros;
+import test.login.victor.entities.Tarefas;
 import test.login.victor.repositories.AccountRepository;
 import test.login.victor.repositories.MembrosRepository;
 
@@ -60,6 +61,19 @@ public class MembrosService {
 		entity.setSexo(obj.getSexo());
 		entity.setAccount(obj.getAccount());
 		
+	}
+	
+	
+	public Membros updatePoints(Long id, Tarefas obj) { 
+		Membros entity = repo.getOne(id); 
+		updateDataPoints(entity, obj);
+		return repo.save(entity);
+	}
+	
+	
+	public void updateDataPoints(Membros entity, Tarefas obj) { 
+		Double points = entity.getPontuacao() + obj.getPontuacao();
+		entity.setPontuacao(points);
 	}
 	
 }
