@@ -1,5 +1,5 @@
 # MyFamilyApp Spring Boot Backend
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/vcaselli/GameSearchEngine/blob/master/LICENSE) 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/vcaselli/SpringBoot-JWT-Security-Projeto-Senac/blob/master/LICENSE) 
 > Aplicação MVP
 >> Senac RJ
 
