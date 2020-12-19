@@ -13,7 +13,7 @@ O Projeto MyFamilyAPP foi uma aplicação com o objetivo de gerenciar atividades
 
 ## Features
 - Padrão de projetos em camadas. 
-- - O Projeto utiliza como base as camadas Entities, Repository, Service e Resources para tornar a aplicação mais organizada e profissional
+  - O Projeto utiliza como base as camadas Entities, Repository, Service e Resources para tornar a aplicação mais organizada e profissional
 - Login com Spring Security 
 - Autenticação por token utilizando JWT 
 
